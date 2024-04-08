@@ -11,7 +11,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "www",
             "index": "src/index.html",
@@ -19,6 +19,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+            },
             "assets": [
               {
                 "glob": "**/*",
@@ -84,7 +87,13 @@
             }
           },
           "defaultConfiguration": "development"
-        },
+        },       
+        "custom-build": {
+          "builder": "@angular-builders/custom-webpack:build",
+          "options": {
+            "outputPath": "dist/custom-build",
+            "webpackConfig": "webpack.config.js"
+          },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
